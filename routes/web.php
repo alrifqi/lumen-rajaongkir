@@ -21,14 +21,14 @@ $router->post(
     ]
 );
 
-$router->group(['prefix'=>'api'], function () use ($router) {
+$router->group(['prefix'=>'api', 'middleware' => 'jwt.auth'], function () use ($router) {
     $router->get('province', ['uses'=>'ProvinceController@showAll']);
     $router->get('province/{id}', ['uses'=>'ProvinceController@showOne']);
     $router->get('city', ['uses'=>'CityController@showAll']);
     $router->get('city/{id}', ['uses'=>'CityController@showOne']);
 });
 
-$router->group(['prefix'=>'search'], function () use ($router) {
+$router->group(['prefix'=>'search', 'middleware' => 'jwt.auth'], function () use ($router) {
     $router->get('provinces', ['uses'=>'ProvinceController@search']);
     $router->get('cities', ['uses'=>'CityController@search']);
 });
