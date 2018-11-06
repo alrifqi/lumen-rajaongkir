@@ -14,6 +14,12 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+$router->post(
+    'auth',
+    [
+        'uses' => 'AuthController@authenticate'
+    ]
+);
 
 $router->group(['prefix'=>'api'], function () use ($router) {
     $router->get('province', ['uses'=>'ProvinceController@showAll']);

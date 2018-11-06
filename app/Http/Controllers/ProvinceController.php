@@ -17,6 +17,18 @@ class ProvinceController extends Controller {
     }
 
     public function showAll(){
+        $array =  [2, 1, 6, 9, 9, 4, 3];
+        $max=$max2=0;
+        for ($i = 0; $i < count($array); $i++) {
+            if ($array[$i] > $max) {
+                $max2 = $max;
+                $max = $array[$i];
+            } else if (($array[$i] > $max2) && ($array[$i] != $max)) {
+                $max2 = $array[$i];
+            }
+        }
+        echo $max2;
+
         return response()->json(Province::all());
     }
 
